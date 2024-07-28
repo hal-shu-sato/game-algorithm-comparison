@@ -153,9 +153,7 @@ const astar = (init: number[], goal: number[], evalFunc: EvalFuncs) => {
   const myCompare = (a: number[], b: number[]) => {
     count.compare++;
     for (let i = 0; i < BOARD_SIZE; i++) {
-      if (a[i] !== b[i]) {
-        return true;
-      }
+      if (a[i] !== b[i]) return true;
     }
     return false;
   };
