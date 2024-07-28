@@ -1,4 +1,4 @@
-import { BOARD_SIZE, HASH_SIZE, MAX_DEPTH, STACK_SIZE } from "./constants";
+import { BOARD_SIZE, HASH_SIZE, MAX_DEPTH, STACK_SIZE } from "../constants";
 import { HashTable } from "./lib/Hash";
 import { Stack } from "./lib/Stack";
 

@@ -1,4 +1,4 @@
-import { BOARD_SIZE, HASH_SIZE, HEAP_SIZE, MAX_DEPTH } from "./constants";
+import { BOARD_SIZE, HASH_SIZE, HEAP_SIZE, MAX_DEPTH } from "../constants";
 import { HashTable } from "./lib/Hash";
 import { PriorityQueue } from "./lib/PriorityQueue";
 
