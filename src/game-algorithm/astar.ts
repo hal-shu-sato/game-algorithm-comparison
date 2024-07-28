@@ -192,7 +192,7 @@ const astar = (init: number[], goal: number[], evalFunc: EvalFuncs) => {
   push(init, goal, depth);
   if (!myCompare(init, goal)) {
     printCount();
-    return;
+    return count.compare;
   }
   while (!isEmpty()) {
     const curr = Array(BOARD_SIZE).fill(0);
@@ -201,7 +201,7 @@ const astar = (init: number[], goal: number[], evalFunc: EvalFuncs) => {
     setVisited(curr);
     if (!myCompare(curr, goal)) {
       printCount();
-      return;
+      return count.compare;
     }
     depth++;
 
@@ -228,6 +228,7 @@ const astar = (init: number[], goal: number[], evalFunc: EvalFuncs) => {
 
   console.log("Not found...");
   printCount();
+  return count.compare;
 };
 
 export default astar;

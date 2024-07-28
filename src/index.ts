@@ -90,33 +90,48 @@ const inits = Array(100)
   .fill(null)
   .map(() => genarateRandomBoard());
 
+const results: number[][] = Array(5);
+const timeResults: number[] = Array(5);
+
 for (let i = 0; i < 5; i++) {
+  const result: number[] = [];
+
   const startTime = Date.now();
 
   switch (i) {
     case 0:
       console.log("DFS");
-      for (const init of inits) dfs(init, goal);
+      for (const init of inits) result.push(dfs(init, goal));
       break;
     case 1:
       console.log("BFS");
-      for (const init of inits) bfs(init, goal);
+      for (const init of inits) result.push(bfs(init, goal));
       break;
     case 2:
       console.log("A* (Fair)");
-      for (const init of inits) astar(init, goal, EvalFuncs.EVAL_FAIR);
+      for (const init of inits)
+        result.push(astar(init, goal, EvalFuncs.EVAL_FAIR));
       break;
     case 3:
       console.log("A* (Weak)");
-      for (const init of inits) astar(init, goal, EvalFuncs.EVAL_WEAK);
+      for (const init of inits)
+        result.push(astar(init, goal, EvalFuncs.EVAL_WEAK));
       break;
     case 4:
       console.log("A* (Bad)");
-      for (const init of inits) astar(init, goal, EvalFuncs.EVAL_BAD);
+      for (const init of inits)
+        result.push(astar(init, goal, EvalFuncs.EVAL_BAD));
       break;
   }
 
   const endTime = Date.now();
 
-  console.log("処理時間", (endTime - startTime) / 1000, "秒");
+  const time = (endTime - startTime) / 1000;
+
+  console.log("処理時間", time, "秒");
+  results[i] = result;
+  timeResults[i] = time;
 }
+
+fs.writeFileSync("results.csv", results.map((r) => r.join(",")).join("\n"));
+fs.writeFileSync("times.csv", timeResults.join("\n"));

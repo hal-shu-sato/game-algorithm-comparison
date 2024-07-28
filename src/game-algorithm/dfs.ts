@@ -133,7 +133,7 @@ const dfs = (init: number[], goal: number[]) => {
   push(init, depth);
   if (!myCompare(init, goal)) {
     printCount();
-    return;
+    return count.compare;
   }
   while (!isEmpty()) {
     const curr = Array(BOARD_SIZE).fill(0);
@@ -146,7 +146,7 @@ const dfs = (init: number[], goal: number[]) => {
       if (!isVisited(next)) {
         if (!myCompare(next, goal)) {
           printCount();
-          return;
+          return count.compare;
         }
         if (depth < MAX_DEPTH) push(next, depth);
       }
@@ -156,7 +156,7 @@ const dfs = (init: number[], goal: number[]) => {
       if (!isVisited(next)) {
         if (!myCompare(next, goal)) {
           printCount();
-          return;
+          return count.compare;
         }
         if (depth < MAX_DEPTH) push(next, depth);
       }
@@ -166,7 +166,7 @@ const dfs = (init: number[], goal: number[]) => {
       if (!isVisited(next)) {
         if (!myCompare(next, goal)) {
           printCount();
-          return;
+          return count.compare;
         }
         if (depth < MAX_DEPTH) push(next, depth);
       }
@@ -176,7 +176,7 @@ const dfs = (init: number[], goal: number[]) => {
       if (!isVisited(next)) {
         if (!myCompare(next, goal)) {
           printCount();
-          return;
+          return count.compare;
         }
         if (depth < MAX_DEPTH) push(next, depth);
       }
@@ -185,6 +185,7 @@ const dfs = (init: number[], goal: number[]) => {
 
   console.log("Not found...");
   printCount();
+  return count.compare;
 };
 
 export default dfs;
