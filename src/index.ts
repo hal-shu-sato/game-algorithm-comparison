@@ -86,7 +86,7 @@ const genarateRandomBoard = () => {
   }
 };
 
-const inits = Array(10)
+const inits = Array(100)
   .fill(null)
   .map(() => genarateRandomBoard());
 
