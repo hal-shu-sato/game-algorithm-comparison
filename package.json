@@ -1,0 +1,9 @@
+{
+  "name": "game-algorithm-comparison",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/hal-shu-sato/game-algorithm-comparison.git",
+  "author": "ato lash <28973861+hal-shu-sato@users.noreply.github.com>",
+  "license": "UNLICENSED",
+  "private": true
+}
