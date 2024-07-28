@@ -44,3 +44,56 @@ if (path) {
 
   process.exit(0);
 }
+
+const genarateRandomBoard = () => {
+  const board: number[] = Array(9).fill(0);
+  const used: boolean[] = Array(9).fill(false);
+  for (let i = 0; i < 9; i++) {
+    let r: number;
+    do {
+      r = Math.floor(Math.random() * 9);
+    } while (used[r]);
+    board[i] = r;
+    used[r] = true;
+  }
+  return board;
+};
+
+const inits = Array(10)
+  .fill(null)
+  .map(() => genarateRandomBoard());
+
+for (let i = 0; i < 5; i++) {
+  const startTime = Date.now();
+
+  for (let j = 0; j < 10; j++) {
+    const init = inits[j];
+
+    switch (i) {
+      case 0:
+        console.log("DFS");
+        dfs(init, goal);
+        break;
+      case 1:
+        console.log("BFS");
+        bfs(init, goal);
+        break;
+      case 2:
+        console.log("A* (Fair)");
+        astar(init, goal, EvalFuncs.EVAL_FAIR);
+        break;
+      case 3:
+        console.log("A* (Weak)");
+        astar(init, goal, EvalFuncs.EVAL_WEAK);
+        break;
+      case 4:
+        console.log("A* (Bad)");
+        astar(init, goal, EvalFuncs.EVAL_BAD);
+        break;
+    }
+  }
+
+  const endTime = Date.now();
+
+  console.log("処理時間", (endTime - startTime) / 1000, "秒");
+}
