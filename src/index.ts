@@ -93,7 +93,7 @@ const inits = Array(100)
 const results: number[][] = Array(5);
 const timeResults: number[] = Array(5);
 
-for (let i = 0; i < 5; i++) {
+for (let i = 0; i < 6; i++) {
   const result: number[] = [];
 
   const startTime = Date.now();
@@ -121,6 +121,11 @@ for (let i = 0; i < 5; i++) {
       console.log("A* (Bad)");
       for (const init of inits)
         result.push(astar(init, goal, EvalFuncs.EVAL_BAD));
+      break;
+    case 5:
+      console.log("A* (New)");
+      for (const init of inits)
+        result.push(astar(init, goal, EvalFuncs.EVAL_NEW));
       break;
   }
 

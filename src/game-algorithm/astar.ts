@@ -6,6 +6,7 @@ export enum EvalFuncs {
   EVAL_FAIR,
   EVAL_WEAK,
   EVAL_BAD,
+  EVAL_NEW,
 }
 
 const fairEvaluator = (board: number[], goal: number[]) => {
@@ -47,6 +48,34 @@ const badEvaluator = (board: number[]) => {
   return 16 - diff;
 };
 
+const newEvaluator = (board: number[], goal: number[]) => {
+  let score = 0;
+  const ds: number[] = [];
+  for (let i = 0; i < BOARD_SIZE; i++) {
+    let x1 = 0;
+    let y1 = 0;
+    let x2 = 0;
+    let y2 = 0;
+    for (let j = 0; j < BOARD_SIZE; j++) {
+      if (board[j] === i) {
+        x1 = j % 3;
+        y1 = Math.floor(j / 3);
+      }
+      if (goal[j] === i) {
+        x2 = j % 3;
+        y2 = Math.floor(j / 3);
+      }
+    }
+    const d = Math.abs(x1 - x2) + Math.abs(y1 - y2);
+    score += d;
+    ds.push(d);
+  }
+
+  const average = ds.reduce((p, c) => p + c, 0) / ds.length;
+  const variance = ds.reduce((p, c) => p + (c - average) ** 2, 0) / ds.length;
+  return score + Math.sqrt(variance);
+};
+
 const score = (
   evalFunc: EvalFuncs,
   board: number[],
@@ -60,6 +89,8 @@ const score = (
       return weakEvaluator(board, goal) + depth;
     case EvalFuncs.EVAL_BAD:
       return badEvaluator(board) + depth;
+    case EvalFuncs.EVAL_NEW:
+      return newEvaluator(board, goal) + depth;
   }
 };
 
