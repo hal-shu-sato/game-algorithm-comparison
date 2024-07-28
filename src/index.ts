@@ -1,4 +1,5 @@
 import * as fs from "fs";
+import { BOARD_SIZE } from "./constants";
 import astar, { EvalFuncs } from "./game-algorithm/astar";
 import bfs from "./game-algorithm/bfs";
 import dfs from "./game-algorithm/dfs";
@@ -45,18 +46,44 @@ if (path) {
   process.exit(0);
 }
 
-const genarateRandomBoard = () => {
-  const board: number[] = Array(9).fill(0);
-  const used: boolean[] = Array(9).fill(false);
-  for (let i = 0; i < 9; i++) {
-    let r: number;
-    do {
-      r = Math.floor(Math.random() * 9);
-    } while (used[r]);
-    board[i] = r;
-    used[r] = true;
+const isSolved = (board: number[]) => {
+  const b = [...board];
+  const blankIndex = b.indexOf(0);
+  const x = blankIndex % 3;
+  const y = Math.floor(blankIndex / 3);
+  const d = Math.abs(x - 1) + Math.abs(y - 1);
+
+  let count = 0;
+  for (let i = 0; i < BOARD_SIZE; i++) {
+    for (let j = i + 1; j < BOARD_SIZE; j++) {
+      if (goal[i] === b[j]) {
+        const tmp = b[j];
+        b[j] = b[i];
+        b[i] = tmp;
+        count++;
+        continue;
+      }
+    }
+    if (b.toString() === goal.toString()) break;
   }
-  return board;
+
+  return count % 2 === d % 2;
+};
+
+const genarateRandomBoard = () => {
+  while (true) {
+    const board: number[] = Array(BOARD_SIZE).fill(0);
+    const used: boolean[] = Array(BOARD_SIZE).fill(false);
+    for (let i = 0; i < BOARD_SIZE; i++) {
+      let r: number;
+      do {
+        r = Math.floor(Math.random() * BOARD_SIZE);
+      } while (used[r]);
+      board[i] = r;
+      used[r] = true;
+    }
+    if (isSolved(board)) return board;
+  }
 };
 
 const inits = Array(10)
