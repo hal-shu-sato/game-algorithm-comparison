@@ -1,7 +1,7 @@
 import * as fs from "fs";
-import dfs from "./game-algorithm/dfs";
-import bfs from "./game-algorithm/bfs";
 import astar, { EvalFuncs } from "./game-algorithm/astar";
+import bfs from "./game-algorithm/bfs";
+import dfs from "./game-algorithm/dfs";
 
 const goal = [1, 2, 3, 8, 0, 4, 7, 6, 5];
 
