@@ -1,10 +1,6 @@
+import { BOARD_SIZE, HASH_SIZE, MAX_DEPTH, QUEUE_SIZE } from "./constants";
 import { HashTable } from "./lib/Hash";
 import { Queue } from "./lib/Queue";
-
-const MAX_DEPTH = 9;
-const QUEUE_SIZE = 1024;
-const HASH_SIZE = 1024;
-const BOARD_SIZE = 9;
 
 const memcpy = (dst: number[], src: number[], size: number) => {
   for (let i = 0; i < size; i++) dst[i] = src[i];

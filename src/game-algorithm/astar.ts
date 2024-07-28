@@ -1,3 +1,4 @@
+import { BOARD_SIZE, HASH_SIZE, HEAP_SIZE, MAX_DEPTH } from "./constants";
 import { HashTable } from "./lib/Hash";
 import { PriorityQueue } from "./lib/PriorityQueue";
 
@@ -6,11 +7,6 @@ export enum EvalFuncs {
   EVAL_WEAK,
   EVAL_BAD,
 }
-
-const MAX_DEPTH = 10;
-const HASH_SIZE = 1024;
-const HEAP_SIZE = 1024;
-const BOARD_SIZE = 9;
 
 const fairEvaluator = (board: number[], goal: number[]) => {
   let score = 0;
