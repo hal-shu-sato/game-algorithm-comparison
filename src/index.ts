@@ -66,31 +66,27 @@ const inits = Array(10)
 for (let i = 0; i < 5; i++) {
   const startTime = Date.now();
 
-  for (let j = 0; j < 10; j++) {
-    const init = inits[j];
-
-    switch (i) {
-      case 0:
-        console.log("DFS");
-        dfs(init, goal);
-        break;
-      case 1:
-        console.log("BFS");
-        bfs(init, goal);
-        break;
-      case 2:
-        console.log("A* (Fair)");
-        astar(init, goal, EvalFuncs.EVAL_FAIR);
-        break;
-      case 3:
-        console.log("A* (Weak)");
-        astar(init, goal, EvalFuncs.EVAL_WEAK);
-        break;
-      case 4:
-        console.log("A* (Bad)");
-        astar(init, goal, EvalFuncs.EVAL_BAD);
-        break;
-    }
+  switch (i) {
+    case 0:
+      console.log("DFS");
+      for (const init of inits) dfs(init, goal);
+      break;
+    case 1:
+      console.log("BFS");
+      for (const init of inits) bfs(init, goal);
+      break;
+    case 2:
+      console.log("A* (Fair)");
+      for (const init of inits) astar(init, goal, EvalFuncs.EVAL_FAIR);
+      break;
+    case 3:
+      console.log("A* (Weak)");
+      for (const init of inits) astar(init, goal, EvalFuncs.EVAL_WEAK);
+      break;
+    case 4:
+      console.log("A* (Bad)");
+      for (const init of inits) astar(init, goal, EvalFuncs.EVAL_BAD);
+      break;
   }
 
   const endTime = Date.now();
