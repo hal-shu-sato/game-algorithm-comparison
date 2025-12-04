@@ -1,11 +1,31 @@
 {
   "name": "game-algorithm-comparison",
   "version": "1.0.0",
-  "main": "dist/index.js",
-  "repository": "https://github.com/hal-shu-sato/game-algorithm-comparison.git",
-  "author": "ato lash <28973861+hal-shu-sato@users.noreply.github.com>",
-  "license": "UNLICENSED",
   "private": true,
+  "repository": "https://github.com/hal-shu-sato/game-algorithm-comparison.git",
+  "license": "UNLICENSED",
+  "author": "ato lash <28973861+hal-shu-sato@users.noreply.github.com>",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc -p .",
+    "dev": "npm-run-all2 -p watch start",
+    "fix": "npm-run-all2 fix:*",
+    "fix:eslint": "eslint --fix",
+    "fix:prettier": "prettier --write .",
+    "lint": "npm-run-all2 lint:*",
+    "lint:eslint": "eslint",
+    "lint:prettier": "prettier --check .",
+    "prepare": "husky",
+    "start": "nodemon --watch 'src/**/*.ts' --exec \"ts-node\" src/index.ts",
+    "watch": "tsc -w -p ."
+  },
+  "lint-staged": {
+    "*.ts": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "**/*": "prettier --write --ignore-unknown"
+  },
   "devDependencies": {
     "@eslint/js": "^9.39.1",
     "@types/node": "^24.10.1",
@@ -20,25 +40,5 @@
     "ts-node": "^10.9.2",
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.48.1"
-  },
-  "scripts": {
-    "start": "nodemon --watch 'src/**/*.ts' --exec \"ts-node\" src/index.ts",
-    "build": "tsc -p .",
-    "watch": "tsc -w -p .",
-    "dev": "npm-run-all2 -p watch start",
-    "prepare": "husky",
-    "lint": "npm-run-all2 lint:*",
-    "lint:eslint": "eslint",
-    "lint:prettier": "prettier --check .",
-    "fix": "npm-run-all2 fix:*",
-    "fix:eslint": "eslint --fix",
-    "fix:prettier": "prettier --write ."
-  },
-  "lint-staged": {
-    "*.ts": [
-      "eslint --fix",
-      "prettier --write"
-    ],
-    "**/*": "prettier --write --ignore-unknown"
   }
 }
